@@ -58,7 +58,9 @@ function ExibirDados() {
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nome</th>
+                                <th>Atividade</th>
+                                <th>Ordem</th>
+                                <th>Descrição</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -67,6 +69,8 @@ function ExibirDados() {
                                 <tr key={index}>
                                     <td>{item.id}</td>
                                     <td>{item.name}</td>
+                                    <td>{item.ordem}</td>
+                                    <td>{item.descricao}</td>
                                     <td>
                                         <Link to={`/editar/${item.id}`}>
                                             <FontAwesomeIcon icon={faPencil} style={{ marginRight: '10px' }} />

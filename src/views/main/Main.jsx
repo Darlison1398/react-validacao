@@ -1,46 +1,58 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Main () {
+function Main() {
     const [name, setName] = useState('');
-    const [showSucessMessage, setShowSucessMessage] = useState(false);
+    const [ordem, setOrdem] = useState('');
+    const [descricao, setDescricao] = useState('');
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     const handleChange = (e) => {
-        setName(e.target.value);
+        const { name, value } = e.target;
+        if (name === "name") {
+            setName(value);
+        } else if (name === "ordem") {
+            setOrdem(value);
+        } else if (name === "descricao") {
+            setDescricao(value);
+        }
     };
 
-    const handleCadastro = () => {
+    const handleCadastro = (e) => {
+        e.preventDefault();
         const url = 'http://localhost:8181/api/salvar';
-        fetch (url, {
+        fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: name
+                name: name,
+                ordem: ordem,
+                descricao: descricao
             })
         })
         .then(response => {
-            if (response.ok) {    
-                setShowSucessMessage(true);
-                setName(''); 
-                return response.json();
-
+            if (response.ok) {
+                setShowSuccessMessage(true);
+                setName('');
+                setOrdem('');
+                setDescricao('');
             } else {
                 throw new Error(response.statusText);
             }
         })
         .then(() => {
             setTimeout(() => {
-                setShowSucessMessage(false);
+                setShowSuccessMessage(false);
             }, 7000);
         })
         .catch(error => {
             console.error('Erro durante o cadastro:', error);
             alert('Erro durante o cadastro. Por favor, tente novamente.');
-         })
+        });
     }
-    
+
     return (
         <div className="container mt-5">
             <div className="row">
@@ -51,17 +63,53 @@ function Main () {
                 <div className="col-md-12">
                     <h3 className="text-center mt-2">Criar dados</h3>
 
-                    {showSucessMessage && (
+                    {showSuccessMessage && (
                         <div className="alert alert-success mt-1 text-center">
-                            <strong>Success!</strong> Dado cadastrado com sucesso!
+                            <strong>Sucesso!</strong> Dado cadastrado com sucesso!
                         </div>
                     )}
 
                     <div className="form">
                         <div className="form-group">
-                            <label>Nome</label>
-                            <input type="text" className="form-control" placeholder="Digite seu nome" onChange={handleChange} value={name}/>
-                            <button type="button" className="btn btn-primary mt-3" onClick={handleCadastro}>Cadastrar</button>    
+                            <form onSubmit={handleCadastro}>
+                                <div>
+                                    <label>Nome</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Digite seu nome"
+                                        name="name"
+                                        onChange={handleChange}
+                                        value={name}
+                                    />
+                                </div><br />
+
+                                <div>
+                                    <label>Ordem</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Ordem da atividade"
+                                        name="ordem"
+                                        onChange={handleChange}
+                                        value={ordem}
+                                    />
+                                </div><br />
+
+                                <div>
+                                    <label>Descrição</label><br />
+                                    <textarea
+                                        name="descricao"
+                                        id="descricao"
+                                        cols="50"
+                                        rows="3"
+                                        onChange={handleChange}
+                                        value={descricao}
+                                    ></textarea>
+                                </div><br />
+
+                                <button type="submit" className="btn btn-primary mt-3">Cadastrar</button>
+                            </form>
                         </div>
                     </div>
                 </div>
