@@ -6,6 +6,7 @@ function Main() {
     const [ordem, setOrdem] = useState('');
     const [descricao, setDescricao] = useState('');
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [nivelimportancia, setNivelImportancia] = useState('Tranquilo');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,6 +19,10 @@ function Main() {
         }
     };
 
+    const handleChangeNivelImportancia = (e) => {
+        setNivelImportancia(e.target.value);
+    }
+
     const handleCadastro = (e) => {
         e.preventDefault();
         const url = 'http://localhost:8181/api/salvar';
@@ -29,7 +34,8 @@ function Main() {
             body: JSON.stringify({
                 name: name,
                 ordem: ordem,
-                descricao: descricao
+                descricao: descricao,
+                nivelimportancia: nivelimportancia
             })
         })
         .then(response => {
@@ -73,7 +79,7 @@ function Main() {
                         <div className="form-group">
                             <form onSubmit={handleCadastro}>
                                 <div>
-                                    <label>Nome</label>
+                                    <label>Atividade</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -107,6 +113,15 @@ function Main() {
                                         value={descricao}
                                     ></textarea>
                                 </div><br />
+
+                                <div>
+                                    <label>Nível de Importância</label><br />
+                                    <select className="form-control" value={nivelimportancia} onChange={handleChangeNivelImportancia}>
+                                        <option value="Tranquilo">Tranquilo</option>
+                                        <option value="Importante">Importante</option>
+                                        <option value="Urgente">Urgente</option>
+                                    </select>
+                                </div>
 
                                 <button type="submit" className="btn btn-primary mt-3">Cadastrar</button>
                             </form>

@@ -42,6 +42,7 @@ function ExibirDados() {
             console.error('Erro ao excluir dado:', error);
         }
     }
+    
 
 
     return (
@@ -49,7 +50,7 @@ function ExibirDados() {
             <div className="row">
 
                 <div className="d-flex justify-content-end mb-3">
-                    <Link to="/" className="btn btn-primary ml-auto">Cadastrar Dados</Link>
+                    <Link to="/main" className="btn btn-primary ml-auto">Cadastrar Dados</Link>
                 </div>
 
                 <div className="col-md-12">
@@ -61,7 +62,8 @@ function ExibirDados() {
                                 <th>Atividade</th>
                                 <th>Ordem</th>
                                 <th>Descrição</th>
-                                <th>Ações</th>
+                                <th>Nivel importância</th>
+                                <th>#</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,6 +73,7 @@ function ExibirDados() {
                                     <td>{item.name}</td>
                                     <td>{item.ordem}</td>
                                     <td>{item.descricao}</td>
+                                    <td>{item.nivelimportancia}</td>
                                     <td>
                                         <Link to={`/editar/${item.id}`}>
                                             <FontAwesomeIcon icon={faPencil} style={{ marginRight: '10px' }} />

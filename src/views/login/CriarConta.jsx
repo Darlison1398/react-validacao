@@ -53,6 +53,7 @@ function CriarConta() {
                      name="nome" 
                      value={formData.nome}
                      onChange={handleChange}
+                     required
                 />
             </div>
 
@@ -65,6 +66,7 @@ function CriarConta() {
                     name="sobrenome" 
                     value={formData.sobrenome}
                     onChange={handleChange}
+                    
                 />
             </div>
 
@@ -77,6 +79,7 @@ function CriarConta() {
                     name="email" 
                     value={formData.email}
                     onChange={handleChange}
+                    required
                 />
             </div>
 
@@ -89,6 +92,7 @@ function CriarConta() {
                     name="senha"
                     value={formData.senha}
                     onChange={handleChange} 
+                    required
                 />
             </div>
 
