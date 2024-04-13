@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+//import createFormData from '../../assets/js/create';
 
 function Main() {
+
     const [name, setName] = useState('');
     const [ordem, setOrdem] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -51,14 +53,14 @@ function Main() {
         .then(() => {
             setTimeout(() => {
                 setShowSuccessMessage(false);
-            }, 7000);
+            }, 5000);
         })
         .catch(error => {
             console.error('Erro durante o cadastro:', error);
             alert('Erro durante o cadastro. Por favor, tente novamente.');
         });
     }
-
+    
     return (
         <div className="container mt-5">
             <div className="row">
@@ -87,6 +89,7 @@ function Main() {
                                         name="name"
                                         onChange={handleChange}
                                         value={name}
+                                        required
                                     />
                                 </div><br />
 

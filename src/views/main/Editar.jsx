@@ -6,6 +6,7 @@ function Editar () {
     const [name, setName] = useState('');
     const [ordem, setOrdem] = useState('');
     const [descricao, setDescricao] = useState('');
+    const [nivelimportancia, setNivelImportancia] = useState('');
 
     useEffect(() => {
         async function fetchData() {
@@ -17,6 +18,7 @@ function Editar () {
                     setName(data.name);
                     setOrdem(data.ordem);
                     setDescricao(data.descricao);
+                    setNivelImportancia(data.nivelimportancia);
                 
                 } else {
                     console.error('Erro ao carregar dado:', response.statusText);
@@ -38,7 +40,13 @@ function Editar () {
             setOrdem(value);
         } else if (name === "descricao") {
             setDescricao(value);
+        } else if (name === "nivelimportancia"){
+            setNivelImportancia(value);
         }
+    };
+
+    const handleNivelImportanciaChange = (e) => {
+        setNivelImportancia(e.target.value);
     };
 
     const handleEditar = (e) => {
@@ -52,7 +60,8 @@ function Editar () {
             body: JSON.stringify({
                 name: name,
                 ordem: ordem,
-                descricao: descricao
+                descricao: descricao,
+                nivelimportancia: nivelimportancia
             })
         })
         .then(response => {
@@ -116,6 +125,14 @@ function Editar () {
                                 value={descricao}
                             ></textarea>
                         </div><br />
+                        <div>
+                            <label>Nível de Importância</label><br />
+                            <select className="form-control" name='nivelimportancia' value={nivelimportancia} onChange={handleNivelImportanciaChange}>
+                                <option value="Tranquilo">Tranquilo</option>
+                                <option value="Importante">Importante</option>
+                                <option value="Urgente">Urgente</option>
+                            </select>
+                        </div>
 
                         <button type="submit" className="btn btn-primary mt-3">Editar</button>
                     
