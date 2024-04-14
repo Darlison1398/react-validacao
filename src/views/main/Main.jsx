@@ -107,7 +107,7 @@ function Main() {
 
                                 <div>
                                     <label>Descrição</label><br />
-                                    <textarea
+                                    <textarea className='container'
                                         name="descricao"
                                         id="descricao"
                                         cols="50"

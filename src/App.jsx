@@ -10,9 +10,10 @@ import Login from './views/login/Login';
 import CriarConta from './views/login/CriarConta';
 
 function App() {
+ 
   return (
     <Router>
-        <Header />
+        <Header/>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/criarConta" element={<CriarConta />} />

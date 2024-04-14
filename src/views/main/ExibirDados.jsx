@@ -23,6 +23,13 @@ function ExibirDados() {
 
         fetchDados();
     }, []);
+    
+    const confirmarExclusao = (id) => {
+        const confirmacao = window.confirm("Tem certeza que deseja excluir este dado?");
+        if (confirmacao) {
+            handleExcluir(id);
+        }
+    }
 
 
     const handleExcluir = async (id) => {
@@ -58,7 +65,6 @@ function ExibirDados() {
                     <table className="table table-hover mt-3">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Atividade</th>
                                 <th>Ordem</th>
                                 <th>Descrição</th>
@@ -69,7 +75,6 @@ function ExibirDados() {
                         <tbody>
                             {dados.map((item, index) => (
                                 <tr key={index}>
-                                    <td>{item.id}</td>
                                     <td>{item.name}</td>
                                     <td>{item.ordem}</td>
                                     <td>{item.descricao}</td>
@@ -78,7 +83,7 @@ function ExibirDados() {
                                         <Link to={`/editar/${item.id}`}>
                                             <FontAwesomeIcon icon={faPencil} style={{ marginRight: '10px' }} />
                                         </Link>
-                                        <FontAwesomeIcon icon={faTrash} style={{color: 'red', marginLeft: '10px'}} onClick={() => handleExcluir(item.id)}/>
+                                        <FontAwesomeIcon icon={faTrash} style={{color: 'red', marginLeft: '10px'}} onClick={() => confirmarExclusao(item.id)}/>
                                     </td>
                                 </tr>
                             ))}
