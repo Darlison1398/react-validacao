@@ -55,7 +55,7 @@ function ExibirDados() {
 
                 <div className="col-md-12">
                     <h3 className="text-center mt-2">Veja seus dados</h3>
-                    <table className="table mt-3">
+                    <table className="table table-hover mt-3">
                         <thead>
                             <tr>
                                 <th>Id</th>
