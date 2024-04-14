@@ -78,7 +78,7 @@ function ExibirDados() {
                                     <td>{item.name}</td>
                                     <td>{item.ordem}</td>
                                     <td>{item.descricao}</td>
-                                    <td>{item.nivelimportancia}</td>
+                                    <td className={item.nivelimportancia === 'Tranquilo' ? 'text-success' : item.nivelimportancia === 'Importante' ? 'text-primary' : item.nivelimportancia === 'Urgente' ? 'text-danger' : ''}> <strong>{item.nivelimportancia}</strong> </td>
                                     <td>
                                         <Link to={`/editar/${item.id}`}>
                                             <FontAwesomeIcon icon={faPencil} style={{ marginRight: '10px' }} />
